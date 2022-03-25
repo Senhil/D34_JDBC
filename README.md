@@ -1,2 +1,2 @@
 # EmployeePayrollJDBC
-Employee Payroll System Database
+Employee Payroll System - Database
