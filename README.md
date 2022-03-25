@@ -1,2 +1,2 @@
-# EmployeePayrollD34
+# EmployeePayrollJDBC
 Employee Payroll System Database
