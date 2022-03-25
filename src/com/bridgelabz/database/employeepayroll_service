@@ -1,0 +1,82 @@
+-- UC1
+create database payroll_service;
+show databases;
+use payroll_service;
+-- UC2
+create table employee_payroll(id int not null auto_increment primary key,empname varchar(25),salary double,startDate date);
+desc employee_payroll;
+-- UC3
+
+insert into employee_payroll(empname,salary,startDate) values('priya',1000,'2021-11-30');
+insert into employee_payroll(empname,salary,startDate) values('Ainy',1200,'2020-1-3');
+insert into employee_payroll(empname,salary,startDate) values('Kaynat',1500,'2019-10-13');
+insert into employee_payroll(empname,salary,startDate) values('Nidhi',2000,'2018-9-23');
+-- UC4
+select * from employee_payroll;
+-- UC5
+select salary from employee_payroll where empname='priya';
+select * from employee_payroll where startDate between cast('2018-01-20' as date) and date(now());
+-- UC6
+desc employee_payroll;
+alter table employee_payroll add column gender varchar(1) after empname;
+update employee_payroll set gender='M' where id>=1;
+select * from employee_payroll;
+-- UC7
+insert into employee_payroll(empname,gender,salary,startDate) values('Navya','F',1000000,'2008-7-10');
+insert into employee_payroll(empname,gender,salary,startDate) values('Shiv','F',1000000,'2005-1-1');
+insert into employee_payroll(empname,gender,salary,startDate) values('Leo','F',5000000,'1995-7-18');
+
+select sum(salary) from employee_payroll where gender='M' group by gender;
+select avg(salary) from employee_payroll where gender='M' group by gender;
+select min(salary) from employee_payroll where gender='M' group by gender;
+select max(salary) from employee_payroll where gender='M' group by gender;
+select count(salary) from employee_payroll where gender='M' group by gender;
+
+select sum(salary) from employee_payroll where gender='F' group by gender;
+select avg(salary) from employee_payroll where gender='F' group by gender;
+select min(salary) from employee_payroll where gender='F' group by gender;
+select max(salary) from employee_payroll where gender='F' group by gender;
+select count(salary) from employee_payroll where gender='F' group by gender;
+-- select count(salary) from employee_payroll where gender='F' ;
+-- UC8
+alter table employee_payroll add column empphone long;
+alter table employee_payroll add column address varchar(50) default 'india';
+alter table employee_payroll add column department varchar(20) not null;
+desc employee_payroll;
+
+-- UC9
+alter table employee_payroll add column basicpay double;
+alter table employee_payroll add column deductions double;
+alter table employee_payroll add column taxablepay double;
+alter table employee_payroll add column incomtax double;
+alter table employee_payroll add column netpay double;
+desc employee_payroll;
+-- UC10
+insert into employee_payroll(empname,gender,salary,startDate,empphone,address,department,basicpay,deductions,taxablepay,incomtax,netpay)
+values('ram','M',789654,'2020-05-06',9876543210,'tpoint aurangabad','coumputer',7412,8500,5632,4521,85200);
+
+insert into employee_payroll(empname,gender,salary,startDate,empphone,address,department,basicpay,deductions,taxablepay,incomtax,netpay)
+values('sham','M',489654,'2022-04-06',7876543210,'cpoint aurangabad','sales and marketing',5412,9500,4632,2521,15200);
+
+insert into employee_payroll(empname,gender,salary,startDate,empphone,address,department,basicpay,deductions,taxablepay,incomtax,netpay)
+values('seema','F',7489654,'2019-01-21',5876543210,'vpoint aurangabad','sales and marketing',6412,1500,3632,5521,15200);
+
+insert into employee_payroll(empname,gender,salary,startDate,empphone,address,department,basicpay,deductions,taxablepay,incomtax,netpay)
+values('amar','M',589654,'2002-05-06',6876543210,'gpoint aurangabad','mechanical',5412,5500,1632,5521,95200);
+
+select * from employee_payroll;
+
+update employee_payroll set department='sales and marketing ' where id>1;
+update employee_payroll set department='computer' where id>12 and id <16;
+update employee_payroll set department='mechanical ' where id=16;
+
+alter table employee_payroll modify salary int auto_increment;
+-- UC11
+create table EmployeeDepartment(empid int not null auto_increment primary key,deptid int not null );
+desc EmployeeDepartment;
+insert into EmployeeDepartment(deptid) values(101);
+insert into EmployeeDepartment(deptid) values(102);
+insert into EmployeeDepartment(deptid) values(103);
+select * from EmployeeDepartment;
+delete from EmployeeDepartment where empid=1;
+desc employee_payroll;
